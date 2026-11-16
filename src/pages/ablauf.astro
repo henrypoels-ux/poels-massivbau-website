@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const steps = [
+  { title: 'Erstgespräch', text: 'Wir lernen Sie und Ihr Vorhaben kennen: Grundstück, Wünsche, Budget und Zeitrahmen. Unverbindlich, persönlich und gern bei Ihnen vor Ort.' },
+  { title: 'Planung mit FAVORIT', text: 'Gemeinsam mit FAVORIT Massivhaus planen Sie Ihr Haus. Grundriss, Ausstattung und Leistungsumfang werden klar festgelegt.' },
+  { title: 'Vertrag und Bauvorbereitung', text: 'Nach Vertragsschluss bereiten wir die Baustelle vor, stimmen Termine ab und planen die einzelnen Gewerke.' },
+  { title: 'Bauphase', text: 'Ein fester Bauleiter begleitet Ihr Haus vom Fundament bis zum Ausbau und ist Ihr Ansprechpartner auf der Baustelle.' },
+  { title: 'Übergabe', text: 'Gemeinsame Abnahme und Schlüsselübergabe – und auch danach sind wir für Sie erreichbar.' },
+];
+---
+<Base title="Ablauf" description="So entsteht Ihr Massivhaus mit Poels Massivbau: vom Erstgespräch über die Planung mit FAVORIT bis zur Schlüsselübergabe.">
+  <PageHero
+    crumb="Ablauf"
+    title="Von der ersten Idee bis zum Schlüssel"
+    lead="Ein Hausbau ist ein großes Projekt. Mit einem klaren Ablauf und festen Ansprechpartnern behalten Sie jederzeit den Überblick."
+  />
+
+  <section class="section">
+    <div class="container">
+      <ol class="timeline">
+        {steps.map((s, i) => (
+          <li>
+            <span class="timeline__num">{String(i + 1).padStart(2, '0')}</span>
+            <div><h2>{s.title}</h2><p>{s.text}</p></div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CtaBand title="Lassen Sie uns mit Schritt 1 beginnen." />
+</Base>
+
+<style>
+  .timeline { list-style: none; margin: 0; padding: 0; max-width: 56rem; }
+  .timeline li { display: grid; grid-template-columns: 5rem 1fr; gap: 24px; padding: 34px 0; border-top: 2px solid var(--line); }
+  .timeline li:last-child { border-bottom: 2px solid var(--line); }
+  .timeline__num { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--red); }
+  .timeline h2 { font-size: 1.45rem; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .timeline p { color: var(--muted); font-size: 1.02rem; }
+  @media (max-width: 560px) { .timeline li { grid-template-columns: 1fr; gap: 10px; } }
+</style>

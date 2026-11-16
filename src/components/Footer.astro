@@ -1,0 +1,62 @@
+---
+import Logo from './Logo.astro';
+import { company, url } from '../lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <Logo color="#FFFFFF" width={132} />
+        <p class="footer__claim">Massivhausbau am Niederrhein. Familienunternehmen aus Straelen.</p>
+      </div>
+      <div>
+        <h2 class="footer__title">Kontakt</h2>
+        <ul>
+          <li>{company.street}<br />{company.zip} {company.city}</li>
+          <li><a href={company.phoneHref}>{company.phone}</a></li>
+          <li><a href={`mailto:${company.email}`}>{company.email}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__title">Leistungen</h2>
+        <ul>
+          <li><a href={url('leistungen/')}>Einfamilienhaus</a></li>
+          <li><a href={url('leistungen/#rohbau')}>Tiefbau &amp; Rohbau</a></li>
+          <li><a href={url('leistungen/#rohbau')}>Dach &amp; Fenster</a></li>
+          <li><a href={url('leistungen/#ausbau')}>Innenausbau</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__title">Unternehmen</h2>
+        <ul>
+          <li><a href={url('ueber-uns/')}>Über uns</a></li>
+          <li><a href={url('ablauf/')}>Ablauf</a></li>
+          <li><a href={url('kontakt/')}>Kontakt</a></li>
+          <li><a href={url('impressum/')}>Impressum</a></li>
+          <li><a href={url('datenschutz/')}>Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© {year} {company.name}</span>
+      <span>Baupartner von FAVORIT Massivhaus</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { background: var(--anthracite-deep); color: rgba(255, 255, 255, .62); font-size: .9rem; padding: 74px 0 32px; }
+  .footer a { color: rgba(255, 255, 255, .62); }
+  .footer a:hover { color: #fff; }
+  .footer__grid {
+    display: grid; gap: 48px; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    padding-bottom: 48px; border-bottom: 1px solid rgba(255, 255, 255, .12);
+  }
+  .footer__claim { margin-top: 22px; max-width: 300px; color: rgba(255, 255, 255, .55); line-height: 1.7; }
+  .footer__title { color: #fff; font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 20px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; line-height: 1.6; }
+  .footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding-top: 26px; font-size: .84rem; color: rgba(255, 255, 255, .4); }
+  @media (max-width: 900px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .footer__grid { grid-template-columns: 1fr; gap: 36px; } }
+</style>

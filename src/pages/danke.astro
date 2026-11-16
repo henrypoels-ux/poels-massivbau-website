@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/site';
+---
+<Base title="Vielen Dank" description="Ihre Anfrage ist bei uns eingegangen." noindex>
+  <section class="section">
+    <div class="container prose">
+      <span class="eyebrow">Anfrage gesendet</span>
+      <h1>Vielen Dank für Ihre Nachricht!</h1>
+      <p class="lead">Ihre Anfrage ist bei uns eingegangen. Wir melden uns so schnell wie möglich bei Ihnen.</p>
+      <div class="btn-row"><a href={url()} class="btn btn--red">Zur Startseite</a></div>
+    </div>
+  </section>
+</Base>

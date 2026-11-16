@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/site';
+---
+<Base title="Seite nicht gefunden" description="Diese Seite existiert nicht." noindex>
+  <section class="section">
+    <div class="container prose">
+      <span class="eyebrow">Fehler 404</span>
+      <h1>Diese Seite gibt es nicht.</h1>
+      <p class="lead">Vielleicht hat sich die Adresse geändert. Über die Startseite finden Sie alles Wichtige.</p>
+      <div class="btn-row"><a href={url()} class="btn btn--red">Zur Startseite</a></div>
+    </div>
+  </section>
+</Base>

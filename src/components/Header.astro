@@ -1,0 +1,71 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { company, nav, url } from '../lib/site';
+
+const current = Astro.url.pathname;
+const isActive = (href: string) => current.startsWith(url(href));
+---
+<header class="header">
+  <div class="container header__inner">
+    <a href={url()} class="header__logo" aria-label="Poels Massivbau – Startseite"><Logo width={136} /></a>
+
+    <button class="header__toggle" aria-expanded="false" aria-controls="main-nav">
+      <span class="sr-only">Menü</span>
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <nav id="main-nav" class="header__nav" aria-label="Hauptnavigation">
+      {nav.map((item) => (
+        <a href={url(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+      <a href={url('kontakt/')} aria-current={isActive('kontakt/') ? 'page' : undefined}>Kontakt</a>
+      <a href={company.phoneHref} class="btn btn--red header__phone"><Icon name="phone" size={17} />{company.phone}</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.header__toggle');
+  const navEl = document.getElementById('main-nav');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    navEl?.classList.toggle('is-open', !open);
+  });
+</script>
+
+<style>
+  .header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--line); }
+  .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 96px; }
+  .header__logo { display: block; }
+  .header__nav { display: flex; align-items: center; gap: 34px; }
+  .header__nav a:not(.btn) {
+    color: var(--text); font-size: .94rem; font-weight: 500;
+    padding: 4px 0; border-bottom: 2px solid transparent;
+  }
+  .header__nav a:not(.btn):hover, .header__nav a[aria-current='page'] { border-bottom-color: var(--red); }
+  .header__phone { padding: 13px 22px; font-size: .9rem; }
+  .header__phone :global(svg) { width: 17px; height: 17px; }
+
+  .header__toggle { display: none; flex-direction: column; gap: 5px; padding: 10px; background: none; border: 0; cursor: pointer; }
+  .bar { display: block; width: 26px; height: 2px; background: var(--anthracite); transition: transform .2s, opacity .2s; }
+  .header__toggle[aria-expanded='true'] .bar:nth-child(2) { transform: translateY(7px) rotate(45deg); }
+  .header__toggle[aria-expanded='true'] .bar:nth-child(3) { opacity: 0; }
+  .header__toggle[aria-expanded='true'] .bar:nth-child(4) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 900px) {
+    .header__inner { min-height: 76px; }
+    .header__logo :global(svg) { width: 112px; height: auto; }
+    .header__toggle { display: flex; }
+    .header__nav {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: #fff; border-bottom: 1px solid var(--line); padding: 8px var(--gutter) 22px;
+    }
+    .header__nav.is-open { display: flex; }
+    .header__nav a:not(.btn) { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .header__nav a:not(.btn):hover, .header__nav a[aria-current='page'] { border-bottom-color: var(--line); color: var(--red); }
+    .header__phone { margin-top: 18px; }
+  }
+</style>

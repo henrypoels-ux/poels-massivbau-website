@@ -1,0 +1,22 @@
+---
+import { url } from '../lib/site';
+interface Props { crumb: string; title: string; lead?: string }
+const { crumb, title, lead } = Astro.props;
+---
+<section class="page-hero">
+  <div class="container">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href={url()}>Start</a><span aria-hidden="true">/</span><span aria-current="page">{crumb}</span></nav>
+    <h1>{title}</h1>
+    {lead && <p>{lead}</p>}
+  </div>
+</section>
+
+<style>
+  .page-hero { background: var(--anthracite); background-image: var(--stripes-dark); color: #fff; padding: clamp(56px, 7vw, 78px) 0; }
+  .crumbs { display: flex; gap: 9px; font-size: .82rem; color: rgba(255, 255, 255, .45); margin-bottom: 26px; }
+  .crumbs a { color: rgba(255, 255, 255, .45); }
+  .crumbs a:hover { color: #fff; }
+  .crumbs [aria-current] { color: #fff; }
+  h1 { font-size: clamp(2.1rem, 4.6vw, 3.5rem); max-width: 56rem; margin-bottom: 22px; }
+  p { font-size: clamp(1.02rem, 1.4vw, 1.19rem); line-height: 1.65; color: rgba(255, 255, 255, .72); max-width: 45rem; }
+</style>

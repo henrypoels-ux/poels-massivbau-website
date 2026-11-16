@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { company, url } from '../lib/site';
+
+// Der Web3Forms-Key kommt beim Build aus der Umgebungsvariable PUBLIC_WEB3FORMS_KEY
+// (lokal: .env, Deployment: GitHub-Repository-Variable). Er steht NICHT im Repo.
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'WEB3FORMS_ACCESS_KEY_HIER_EINTRAGEN';
+const redirect = new URL(url('danke/'), Astro.site).href;
+---
+<Base title="Kontakt" description="Kontakt zur Poels Massivbau GmbH in Straelen: Telefon 02834 9428 033, kontakt@poels-massivbau.de, Hubertusstraße 26.">
+  <PageHero
+    crumb="Kontakt"
+    title="Reden wir über Ihr Bauvorhaben"
+    lead="Ein Anruf reicht für die erste Einschätzung. Für alles andere nehmen wir uns Zeit – gern bei Ihnen oder auf dem Grundstück."
+  />
+
+  <section class="section">
+    <div class="container contact">
+      <form class="form" action="https://api.web3forms.com/submit" method="POST">
+        <h2>Anfrage senden</h2>
+        <p class="form__intro">Wir melden uns schnellstmöglich bei Ihnen zurück.</p>
+        <input type="hidden" name="access_key" value={accessKey} />
+        <input type="hidden" name="subject" value="Neue Anfrage über poels-massivbau.de" />
+        <input type="hidden" name="from_name" value="Website Poels Massivbau" />
+        <input type="hidden" name="redirect" value={redirect} />
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="form__row">
+          <label>Vorname *<input type="text" name="vorname" required autocomplete="given-name" /></label>
+          <label>Nachname *<input type="text" name="nachname" required autocomplete="family-name" /></label>
+        </div>
+        <div class="form__row">
+          <label>E-Mail *<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Telefon<input type="tel" name="telefon" autocomplete="tel" /></label>
+        </div>
+        <div class="form__row">
+          <label>Worum geht es?
+            <select name="anliegen">
+              <option>Neubau Einfamilienhaus</option>
+              <option>Rohbau / Tiefbau</option>
+              <option>Sonstiges</option>
+            </select>
+          </label>
+          <label>Grundstück vorhanden?
+            <select name="grundstueck">
+              <option value="">Bitte wählen</option>
+              <option>Ja</option>
+              <option>In Aussicht</option>
+              <option>Nein, noch auf der Suche</option>
+            </select>
+          </label>
+        </div>
+        <label>Ort des Vorhabens<input type="text" name="ort" placeholder="z. B. Straelen-Herongen" /></label>
+        <label>Ihre Nachricht *<textarea name="message" rows="6" required></textarea></label>
+        <label class="consent">
+          <input type="checkbox" name="datenschutz" value="akzeptiert" required />
+          <span>Ich habe die <a href={url('datenschutz/')}>Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden. *</span>
+        </label>
+        <button type="submit" class="btn btn--red">Anfrage absenden <Icon name="arrow" /></button>
+        <p class="form__hint">* Pflichtfelder</p>
+      </form>
+
+      <aside class="direct">
+        <h2>Direkt erreichbar</h2>
+        <dl>
+          <div><dt><Icon name="phone" size={18} />Telefon</dt><dd><a href={company.phoneHref}>{company.phone}</a></dd></div>
+          <div><dt><Icon name="mail" size={18} />E-Mail</dt><dd><a href={`mailto:${company.email}`}>{company.email}</a></dd></div>
+          <div><dt><Icon name="pin" size={18} />Büro</dt><dd>{company.street}<br />{company.zip} {company.city}</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+  .form { display: grid; gap: 20px; padding: clamp(24px, 4vw, 48px); background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--red); }
+  .form h2 { font-size: 1.75rem; }
+  .form__intro { color: var(--muted); margin-top: -8px; }
+  .form__row { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+  .form label { display: grid; gap: 7px; font-size: .88rem; font-weight: 600; }
+  .form input:not([type='checkbox']), .form select, .form textarea {
+    width: 100%; padding: 13px 14px; font: inherit; font-size: 1rem; font-weight: 400; color: var(--text);
+    background: var(--paper); border: 1px solid #d9d3ca; border-radius: var(--radius);
+  }
+  .form input::placeholder { color: #9a9489; }
+  .form input:focus, .form select:focus, .form textarea:focus { outline: 2px solid var(--red); outline-offset: 0; border-color: var(--red); background: #fff; }
+  .form .consent { grid-template-columns: auto 1fr; align-items: start; gap: 12px; font-weight: 400; color: var(--muted); line-height: 1.6; }
+  .form .consent input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--red); }
+  .form button { justify-self: start; }
+  .form__hint { font-size: .8rem; color: var(--muted); }
+  .hp { display: none; }
+
+  .direct { background: var(--anthracite); color: #fff; padding: clamp(24px, 3.5vw, 40px); }
+  .direct h2 { color: #fff; font-size: 1.4rem; margin-bottom: 10px; }
+  .direct dl { margin: 0; }
+  .direct div { padding: 18px 0; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+  .direct div:last-child { border-bottom: 0; }
+  .direct dt { display: flex; align-items: center; gap: 10px; font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
+  .direct dt :global(svg) { color: var(--red); }
+  .direct dd { margin: 6px 0 0; font-size: 1.05rem; font-weight: 500; }
+  .direct a { color: #fff; }
+  .direct a:hover { color: #fff; text-decoration: underline; }
+  @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } .direct { order: -1; } }
+</style>

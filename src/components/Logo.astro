@@ -1,0 +1,18 @@
+---
+// Logo aus dem Claude-Design-Entwurf (Richtung A): Schriftzug + zwei versetzte Klinkerreihen.
+// Sobald die Original-Logodatei vorliegt: als public/logo.svg ablegen und hier ersetzen.
+interface Props { color?: string; width?: number }
+const { color = '#CC0404', width = 152 } = Astro.props;
+const row1 = Array.from({ length: 9 }, (_, i) => ({ x: +(i * 74.7).toFixed(1), w: 66.7 }));
+const row2 = [
+  { x: 0, w: 29.4 },
+  ...Array.from({ length: 8 }, (_, i) => ({ x: +(37.4 + i * 74.7).toFixed(1), w: 66.7 })),
+  { x: 635, w: 29 },
+];
+---
+<svg viewBox="0 0 664 326" width={width} height={+(width * 326 / 664).toFixed(1)} role="img" aria-label="Poels Massivbau GmbH" class="logo">
+  <text x="0" y="150" textLength="664" lengthAdjust="spacingAndGlyphs" font-family="'Arial Black', 'Arial Bold', Gadget, Helvetica, Arial, sans-serif" font-size="182" font-weight="900" fill={color}>Poels</text>
+  <text x="0" y="238" textLength="664" lengthAdjust="spacingAndGlyphs" font-family="'Arial Black', 'Arial Bold', Gadget, Helvetica, Arial, sans-serif" font-size="74" font-weight="900" fill={color}>Massivbau GmbH</text>
+  {row1.map((b) => <rect x={b.x} y="262" width={b.w} height="26" fill={color} />)}
+  {row2.map((b) => <rect x={b.x} y="294" width={b.w} height="26" fill={color} />)}
+</svg>
