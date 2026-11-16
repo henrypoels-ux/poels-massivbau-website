@@ -1,14 +1,14 @@
 ---
 import Logo from './Logo.astro';
-import { company, url } from '../lib/site';
+import { company, services, url } from '../lib/site';
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
       <div>
-        <Logo color="#FFFFFF" width={132} />
-        <p class="footer__claim">Massivhausbau am Niederrhein. Familienunternehmen aus Straelen.</p>
+        <Logo light width={140} />
+        <p class="footer__claim">Massivbau, Bauleitung und Projektentwicklung am Niederrhein. Familienunternehmen aus Straelen.</p>
       </div>
       <div>
         <h2 class="footer__title">Kontakt</h2>
@@ -21,18 +21,15 @@ const year = new Date().getFullYear();
       <div>
         <h2 class="footer__title">Leistungen</h2>
         <ul>
-          <li><a href={url('leistungen/')}>Einfamilienhaus</a></li>
-          <li><a href={url('leistungen/#rohbau')}>Tiefbau &amp; Rohbau</a></li>
-          <li><a href={url('leistungen/#rohbau')}>Dach &amp; Fenster</a></li>
-          <li><a href={url('leistungen/#ausbau')}>Innenausbau</a></li>
+          {services.map((s) => <li><a href={url(`leistungen/#${s.id}`)}>{s.title}</a></li>)}
         </ul>
       </div>
       <div>
         <h2 class="footer__title">Unternehmen</h2>
         <ul>
           <li><a href={url('ueber-uns/')}>Über uns</a></li>
-          <li><a href={url('ablauf/')}>Ablauf</a></li>
-          <li><a href={url('kontakt/')}>Kontakt</a></li>
+          <li><a href={url('referenzen/')}>Referenzen</a></li>
+          <li><a href={url('karriere/')}>Karriere</a></li>
           <li><a href={url('impressum/')}>Impressum</a></li>
           <li><a href={url('datenschutz/')}>Datenschutz</a></li>
         </ul>
@@ -40,7 +37,7 @@ const year = new Date().getFullYear();
     </div>
     <div class="footer__bottom">
       <span>© {year} {company.name}</span>
-      <span>Baupartner von FAVORIT Massivhaus</span>
+      <span>{company.street} · {company.zip} {company.city}</span>
     </div>
   </div>
 </footer>

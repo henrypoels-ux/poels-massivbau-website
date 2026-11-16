@@ -2,52 +2,62 @@
 import Base from '../layouts/Base.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
-import { company, url } from '../lib/site';
+import Photo from '../components/Photo.astro';
+import { company, services, url } from '../lib/site';
 
+// Platzhalter in eckigen Klammern bitte ersetzen.
 const stats = [
-  { value: String(company.partnerSince), label: 'Baupartner von FAVORIT Massivhaus' },
+  { value: '[ANZAHL]', label: 'Bauvorhaben am Niederrhein' },
+  { value: 'seit [JAHR]', label: 'im Familienbesitz geführt' },
   { value: '100 %', label: 'massive Bauweise, kein Fertigbau' },
-  { value: '1', label: 'fester Ansprechpartner vom Erstgespräch bis zur Übergabe' },
+  { value: '1', label: 'Ansprechpartner von Anfang bis Übergabe' },
 ];
 
-const services = [
-  { icon: 'house', title: 'Einfamilienhaus', text: 'Ihr Grundstück, Ihr Grundriss. Gemeinsam mit FAVORIT individuell geplant und massiv gemauert – vom Keller bis zum Dach.', href: 'leistungen/' },
-  { icon: 'layers', title: 'Tiefbau & Rohbau', text: 'Erdarbeiten, Fundamente, Bodenplatte, Mauerwerk und Decken – von bewährten Fachbetrieben ausgeführt, von uns überwacht.', href: 'leistungen/#rohbau' },
-  { icon: 'roof', title: 'Dach & Fenster', text: 'Dachstuhl, Eindeckung, Fenster und Klinkerfassade für eine dichte, langlebige Gebäudehülle.', href: 'leistungen/#rohbau' },
-  { icon: 'tools', title: 'Innenausbau', text: 'Putz, Estrich, Elektro, Sanitär, Fliesen und Türen – von unserer Bauleitung vergeben und gesteuert.', href: 'leistungen/#ausbau' },
-] as const;
-
 const reasons = [
-  { title: 'Familienunternehmen mit Erfahrung', text: 'Sie sprechen mit der Geschäftsführung, nicht mit einer Hotline. Entscheidungen fallen schnell und verbindlich.' },
-  { title: 'Massive, solide Bauweise', text: 'Stein auf Stein gemauert, mit festen Handwerkspartnern vom Niederrhein und kontrollierten Bauabschnitten.' },
-  { title: 'Individuelle Planung und Umsetzung', text: 'Grundriss, Ausstattung und Fassade entstehen gemeinsam mit Ihnen und FAVORIT Massivhaus.' },
+  { title: 'Familienunternehmen mit Erfahrung', text: 'Sie sprechen mit der Geschäftsführung, nicht mit einer Hotline. Entscheidungen fallen am gleichen Tag.' },
+  { title: 'Massive, qualitätsgeprüfte Bauweise', text: 'Feste Handwerkspartner am Niederrhein, kontrollierte Bauabschnitte, dokumentierte Abnahmen.' },
+  { title: 'Individuelle Planung und Umsetzung', text: 'Kein Katalogzwang: Grundriss, Ausstattung und Fassade entstehen gemeinsam mit Ihnen.' },
 ];
 
 const steps = [
-  { title: 'Erstgespräch', text: 'Grundstück, Vorstellungen, Budget. Unverbindlich und gern bei Ihnen vor Ort.' },
-  { title: 'Planung mit FAVORIT', text: 'Grundriss, Ausstattung und Leistungsumfang werden gemeinsam klar festgelegt.' },
-  { title: 'Bauvorbereitung', text: 'Nach Vertragsschluss stimmen wir Termine ab und bereiten die Baustelle vor.' },
-  { title: 'Bauphase', text: 'Feste Bauleitung und ein Terminplan, auf den Sie sich verlassen können.' },
-  { title: 'Übergabe', text: 'Gemeinsame Abnahme, Schlüsselübergabe und ein Ansprechpartner auch danach.' },
+  { title: 'Erstgespräch', text: 'Grundstück, Vorstellungen, Budget. Kostenlos und unverbindlich, gern bei Ihnen vor Ort.' },
+  { title: 'Planung & Angebot', text: 'Grundriss gemeinsam mit dem Architekten, dazu ein Angebot mit klarer Baubeschreibung.' },
+  { title: 'Genehmigung', text: 'Bauantrag, Statik und Behördenwege koordinieren wir – Sie behalten den Überblick.' },
+  { title: 'Bauphase', text: 'Feste Bauleitung, digitales Bautagebuch und ein Terminplan, auf den Sie sich verlassen können.' },
+  { title: 'Übergabe', text: 'Gemeinsame Abnahme, vollständige Dokumentation und ein Ansprechpartner auch danach.' },
+];
+
+const refs = [
+  { typ: 'Einfamilienhaus', ort: 'Geldern-Veert' },
+  { typ: 'Doppelhaus', ort: 'Neuss-Uedesheim' },
+  { typ: 'Mehrfamilienhaus', ort: 'Essen-Frillendorf' },
+];
+
+const team = [
+  { name: 'Henry Poels', role: 'Geschäftsführung', text: 'Erstgespräch, Angebot und Projektentwicklung. Bauleitung für Tiefbau, Rohbau, Dach und Fenster.' },
+  { name: 'David Pütz', role: 'Bauleitung', text: 'Bauleitung für den Innenausbau: Putz, Elektro, Sanitär, Estrich und Fliesen.' },
 ];
 ---
-<Base title="Start" description="Poels Massivbau GmbH aus Straelen: Familienunternehmen für Massivhäuser am Niederrhein. Baupartner von FAVORIT Massivhaus seit 2021.">
+<Base title="Start" description="Poels Massivbau GmbH aus Straelen: Einfamilien- und Mehrfamilienhäuser in Massivbauweise, Bauleitung und Projektentwicklung am Niederrhein.">
   <section class="hero">
     <div class="container hero__inner">
       <p class="hero__eyebrow">Massivhausbau am Niederrhein</p>
       <h1>Wir bauen Ihr Zuhause.<br />Stein auf Stein.</h1>
-      <p class="hero__lead">Als Familienunternehmen aus Straelen bauen wir Einfamilienhäuser in massiver Bauweise – vom Erdaushub bis zur Schlüsselübergabe, mit festen Ansprechpartnern.</p>
+      <p class="hero__lead">Als Familienunternehmen aus Straelen realisieren wir Ein- und Mehrfamilienhäuser in massiver Bauweise, übernehmen die Bauleitung für Ihr Projekt oder entwickeln es mit Ihnen von Grund auf – mit einem Ansprechpartner.</p>
       <div class="btn-row">
         <a href={url('kontakt/')} class="btn btn--red">Bauvorhaben besprechen <Icon name="arrow" /></a>
-        <a href={url('leistungen/')} class="btn btn--outline-light">Leistungen ansehen</a>
+        <a href={url('referenzen/')} class="btn btn--outline-light">Referenzen ansehen</a>
       </div>
     </div>
+    <div class="container hero__photo"><Photo label="Rohbau / fertiges Haus, Querformat" dark /></div>
   </section>
 
   <section class="trust" aria-label="Auf einen Blick">
     <div class="container trust__inner">
-      <span><Icon name="shield" size={19} />Baupartner von FAVORIT Massivhaus seit {company.partnerSince}</span>
+      <span><Icon name="shield" size={19} />Bau, Bauleitung und Projektentwicklung</span>
+      <span class="trust__sep" aria-hidden="true"></span>
       <span><Icon name="house" size={19} />Familienunternehmen aus Straelen</span>
+      <span class="trust__sep" aria-hidden="true"></span>
       <span><Icon name="pin" size={19} />Straelen · Kreis Kleve · Kreis Viersen · Niederrhein</span>
     </div>
   </section>
@@ -55,7 +65,7 @@ const steps = [
   <section class="stats">
     <div class="container stats__grid">
       {stats.map((s) => (
-        <div class="stat"><div class="stat__value">{s.value}</div><div class="stat__label">{s.label}</div></div>
+        <div><div class="stat__value">{s.value}</div><div class="stat__label">{s.label}</div></div>
       ))}
     </div>
   </section>
@@ -63,15 +73,18 @@ const steps = [
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <div><p class="eyebrow">Leistungen</p><h2>Was wir für Sie bauen</h2></div>
-        <p class="lead">Alle Gewerke vergeben, koordinieren und überwachen wir mit eigener Bauleitung – Sie haben einen Ansprechpartner für alles.</p>
+        <div><p class="eyebrow">Leistungen</p><h2>Was wir für Sie tun</h2></div>
+        <p class="lead">Schlüsselfertig bauen, nur die Bauleitung abgeben oder ein Projekt von Grund auf entwickeln – wir übernehmen so viel, wie Sie abgeben möchten.</p>
       </div>
       <div class="grid grid--4">
         {services.map((s) => (
-          <a href={url(s.href)} class="card card--link">
+          <a href={url(`leistungen/#${s.id}`)} class="card card--link">
             <Icon name={s.icon} size={30} class="card__icon" />
             <h3>{s.title}</h3>
-            <p>{s.text}</p>
+            <p>{s.short}</p>
+            {s.id === 'einfamilienhaus' && (
+              <p class="card__note">Auf Wunsch mit Haustypen unseres Partners FAVORIT Massivhaus.</p>
+            )}
             <span class="card__more">Mehr erfahren →</span>
           </a>
         ))}
@@ -80,20 +93,12 @@ const steps = [
   </section>
 
   <section class="section why">
-    <div class="container why__grid">
-      <div class="why__visual" aria-hidden="true">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          {Array.from({ length: 12 }, (_, r) =>
-            Array.from({ length: 9 }, (_, c) => (
-              <rect x={c * 48 - (r % 2 ? 24 : 0)} y={r * 26} width="44" height="22" fill={(r * 7 + c * 3) % 11 === 0 ? '#CC0404' : '#D6CFC5'} />
-            ))
-          )}
-        </svg>
-      </div>
+    <div class="container split">
+      <Photo label="Mauerwerk / Baustelle im Detail, Hochformat" height="520px" />
       <div>
         <p class="eyebrow">Warum Poels</p>
         <h2>Ein Haus, das Ihre Enkel noch überzeugt</h2>
-        <p class="why__intro">Massiv gebaut heißt: solide Statik, guter Schallschutz und hoher Werterhalt. Und weil unsere Bauleitung alle Gewerke vom Tiefbau bis zum Ausbau koordiniert und überwacht, wissen wir an jedem Tag, wie Ihr Haus wirklich steht.</p>
+        <p class="split__text">Massiv gebaut heißt: bessere Statik, besserer Schallschutz, höherer Werterhalt. Und weil unsere Bauleitung alle Gewerke vom Tiefbau bis zum Ausbau koordiniert und überwacht, wissen wir an jedem Tag, wie Ihr Haus wirklich steht.</p>
         <div class="why__list">
           {reasons.map((r) => (
             <div class="why__item">
@@ -106,14 +111,20 @@ const steps = [
     </div>
   </section>
 
-  <section class="favorit">
-    <div class="container favorit__inner">
-      <div class="favorit__badge" aria-hidden="true"><span>FAVORIT</span><small>Massivhaus</small></div>
-      <div class="favorit__text">
-        <p class="favorit__kicker">Baupartner seit {company.partnerSince}</p>
-        <p>Als Baupartner von FAVORIT Massivhaus verbinden wir individuelle Hausplanung und Planungssicherheit mit der Ausführung eines regionalen Bauunternehmens.</p>
-      </div>
-      <a href={company.partnerUrl} class="btn btn--outline-dark" target="_blank" rel="noopener">Zu FAVORIT Massivhaus</a>
+  <section class="focus">
+    <div class="container focus__grid">
+      <a href={url('leistungen/#bauleitung')} class="focus__item">
+        <p class="focus__kicker">Als Dienstleistung</p>
+        <h2>Reine Bauleitung</h2>
+        <p>Sie haben Planung, Grundstück und vielleicht schon Handwerker? Wir übernehmen Vergabe, Terminplanung, Bauüberwachung und Abnahmen – für private Bauherren, Investoren und Architekten.</p>
+        <span class="focus__more">Bauleitung anfragen →</span>
+      </a>
+      <a href={url('leistungen/#projektentwicklung')} class="focus__item">
+        <p class="focus__kicker">Von Grund auf</p>
+        <h2>Projektentwicklung</h2>
+        <p>Vom Grundstück bis zum fertigen Objekt: Wir prüfen Standort und Wirtschaftlichkeit, entwickeln das Konzept und setzen es mit eigener Bauleitung um.</p>
+        <span class="focus__more">Projekt besprechen →</span>
+      </a>
     </div>
   </section>
 
@@ -122,14 +133,60 @@ const steps = [
       <div class="steps-head">
         <p class="eyebrow">Ablauf</p>
         <h2>Von der ersten Idee bis zum Schlüssel</h2>
-        <p class="lead">Fünf Schritte, in denen Sie jederzeit wissen, was als Nächstes passiert.</p>
+        <p class="lead">Fünf Schritte, in denen Sie jederzeit wissen, was als Nächstes passiert und was es kostet.</p>
       </div>
       <ol class="steps">
         {steps.map((s, i) => (
           <li><span class="steps__num">{String(i + 1).padStart(2, '0')}</span><h3>{s.title}</h3><p>{s.text}</p></li>
         ))}
       </ol>
-      <a href={url('ablauf/')} class="steps__more">Ablauf im Detail →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div><p class="eyebrow">Referenzen</p><h2>Gebaut am Niederrhein</h2></div>
+        <a href={url('referenzen/')} class="more-link">Alle Referenzen ansehen →</a>
+      </div>
+      <div class="grid grid--3">
+        {refs.map((r) => (
+          <article class="ref">
+            <Photo label={r.ort} height="260px" />
+            <div class="ref__body">
+              <p class="ref__typ">{r.typ}</p>
+              <h3>{r.ort}</h3>
+              <p class="ref__text">[Kurzbeschreibung: Bauweise, Fassade, Besonderheiten]</p>
+              <div class="ref__facts">
+                <div><span>Wohnfläche</span><strong>[m²]</strong></div>
+                <div><span>Fertigstellung</span><strong>[Jahr]</strong></div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="team">
+        <div>
+          <p class="eyebrow">Ihre Ansprechpartner</p>
+          <h2 class="team__h2">Zwei Namen, die Sie am Bau erreichen</h2>
+          <p class="team__text">Bei uns führt kein Weg über eine Hotline. Sie haben von der ersten Skizze bis zur Übergabe dieselben Ansprechpartner.</p>
+        </div>
+        <div class="team__people">
+          {team.map((p) => (
+            <div>
+              <Photo label="Porträt" height="220px" />
+              <h3 class="person__name">{p.name}</h3>
+              <p class="person__role">{p.role}</p>
+              <p class="person__text">{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -137,52 +194,54 @@ const steps = [
 </Base>
 
 <style>
-  .hero { background: var(--anthracite); background-image: var(--stripes-dark), linear-gradient(160deg, #1b2a38 0%, #121d28 55%, #0c141c 100%); color: #fff; }
-  .hero__inner { min-height: clamp(520px, 72vh, 660px); display: flex; flex-direction: column; justify-content: center; padding-top: 72px; padding-bottom: 72px; }
+  .hero { background: var(--anthracite); background-image: var(--stripes-dark), linear-gradient(160deg, #1b2a38 0%, #121d28 55%, #0c141c 100%); color: #fff; padding-bottom: 36px; }
+  .hero__inner { min-height: clamp(500px, 66vh, 620px); display: flex; flex-direction: column; justify-content: center; padding-top: 72px; padding-bottom: 32px; }
   .hero__eyebrow { display: flex; align-items: center; gap: 12px; font-size: .82rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 24px; }
   .hero__eyebrow::before { content: ''; width: 42px; height: 3px; background: var(--red); }
   .hero h1 { color: #fff; max-width: 15ch; margin-bottom: 26px; }
-  .hero__lead { font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.6; color: var(--on-dark); max-width: 40rem; margin-bottom: 40px; }
+  .hero__lead { font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.6; color: var(--on-dark); max-width: 42rem; margin-bottom: 40px; }
   .hero .btn { padding: 18px 30px; }
+  .hero__photo { display: flex; justify-content: flex-end; }
 
   .trust { background: var(--anthracite); border-top: 1px solid rgba(255, 255, 255, .08); color: rgba(255, 255, 255, .85); }
-  .trust__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 40px; padding-top: 22px; padding-bottom: 22px; font-size: .9rem; font-weight: 500; }
+  .trust__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px; padding-top: 22px; padding-bottom: 22px; font-size: .9rem; font-weight: 500; }
   .trust span { display: flex; align-items: center; gap: 11px; }
   .trust :global(svg) { color: var(--red); flex-shrink: 0; }
+  .trust__sep { width: 1px; height: 22px; background: rgba(255, 255, 255, .15); }
+  @media (max-width: 1000px) { .trust__sep { display: none; } .trust__inner { justify-content: flex-start; } }
 
   .stats { background: var(--white); border-bottom: 1px solid var(--line); padding: clamp(48px, 6vw, 74px) 0; }
-  .stats__grid { display: grid; gap: 32px 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
-  .stat__value { font-size: clamp(2.2rem, 4vw, 2.9rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 8px; }
-  .stat__label { font-size: .94rem; font-weight: 500; color: var(--muted); max-width: 18rem; }
+  .stats__grid { display: grid; gap: 32px 40px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 900px) { .stats__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .stat__value { font-size: clamp(1.9rem, 3.4vw, 2.9rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 8px; overflow-wrap: anywhere; }
+  .stat__label { font-size: .94rem; font-weight: 500; color: var(--muted); }
 
   .card--link { color: var(--text); transition: border-color .15s, transform .15s; }
   .card--link:hover { color: var(--text); border-color: #d6cfc5; border-top-color: var(--red); transform: translateY(-2px); }
   .card--link .card__more { color: var(--red); }
+  .card__note { font-size: .84rem !important; color: var(--text-2) !important; padding-left: 10px; border-left: 2px solid var(--line); }
 
   .why { padding-top: 0; }
-  .why__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: center; }
-  .why__visual { height: 100%; min-height: 420px; background: #e8e3dc; border: 1px solid #ddd6cb; overflow: hidden; }
-  .why__visual svg { width: 100%; height: 100%; }
-  .why h2 { margin-bottom: 26px; }
-  .why__intro { font-size: 1.06rem; line-height: 1.7; color: var(--text-2); margin-bottom: 38px; }
   .why__list { display: grid; gap: 26px; }
   .why__item { display: flex; gap: 18px; align-items: flex-start; }
   .why__check { flex-shrink: 0; width: 42px; height: 42px; display: grid; place-items: center; background: var(--anthracite); color: #fff; }
   .why__item h3 { font-size: 1.12rem; margin-bottom: 6px; }
   .why__item p { font-size: .97rem; color: var(--muted); }
-  @media (max-width: 900px) {
-    .why__grid { grid-template-columns: 1fr; gap: 40px; }
-    .why__visual { min-height: 220px; order: 2; }
-  }
 
-  .favorit { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 54px 0; }
-  .favorit__inner { display: flex; flex-wrap: wrap; align-items: center; gap: 28px 40px; }
-  .favorit__badge { width: 150px; height: 78px; border: 1px solid var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1; }
-  .favorit__badge span { font-weight: 700; letter-spacing: .08em; }
-  .favorit__badge small { font-size: .72rem; color: var(--muted); }
-  .favorit__text { flex: 1 1 26rem; }
-  .favorit__kicker { font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .favorit__text p:last-child { font-size: 1.06rem; font-weight: 500; line-height: 1.6; }
+  .focus { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .focus__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .focus__item { padding: clamp(40px, 5vw, 64px) clamp(0px, 3vw, 48px) clamp(40px, 5vw, 64px) 0; color: var(--text); }
+  .focus__item + .focus__item { border-left: 1px solid var(--line); padding-left: clamp(24px, 4vw, 56px); }
+  .focus__item:hover { color: var(--text); }
+  .focus__item:hover h2 { color: var(--red); }
+  .focus__kicker { font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .focus h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); margin-bottom: 14px; transition: color .15s; }
+  .focus p:not(.focus__kicker) { color: var(--muted); max-width: 34rem; margin-bottom: 18px; }
+  .focus__more { font-weight: 600; color: var(--red); }
+  @media (max-width: 800px) {
+    .focus__grid { grid-template-columns: 1fr; }
+    .focus__item + .focus__item { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
+  }
 
   .steps-head { max-width: 44rem; margin-bottom: 58px; }
   .steps-head h2 { margin-bottom: 20px; }
@@ -193,6 +252,24 @@ const steps = [
   .steps__num { font-size: .82rem; font-weight: 700; letter-spacing: .1em; color: var(--red); }
   .steps h3 { color: #fff; font-size: 1.15rem; }
   .steps p { font-size: .91rem; line-height: 1.6; color: var(--on-dark-muted); }
-  .steps__more { display: inline-block; margin-top: 44px; font-weight: 600; color: #fff; }
-  .steps__more:hover { color: #fff; text-decoration: underline; }
+
+  .more-link { font-weight: 600; }
+  .ref { background: var(--white); border: 1px solid var(--line); }
+  .ref :global(.photo) { border: 0; }
+  .ref__body { padding: 26px 26px 30px; }
+  .ref__typ { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .ref h3 { font-size: 1.35rem; margin-bottom: 14px; }
+  .ref__text { font-size: .91rem; color: var(--muted); margin-bottom: 18px; }
+  .ref__facts { display: flex; gap: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .ref__facts span { display: block; font-size: .72rem; font-weight: 500; color: #9a9489; margin-bottom: 3px; }
+  .ref__facts strong { font-size: .91rem; font-weight: 600; }
+
+  .team { display: grid; grid-template-columns: 1fr 1.35fr; gap: 64px; align-items: center; padding: clamp(28px, 4.5vw, 62px); background: var(--white); border: 1px solid var(--line); }
+  .team__h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 20px; }
+  .team__text { font-size: 1.03rem; line-height: 1.7; color: var(--muted); }
+  .team__people { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 24px; }
+  .person__name { font-size: 1.18rem; margin: 16px 0 4px; }
+  .person__role { font-size: .88rem; font-weight: 500; color: var(--red); margin-bottom: 10px; }
+  .person__text { font-size: .88rem; color: var(--muted); }
+  @media (max-width: 900px) { .team { grid-template-columns: 1fr; gap: 36px; } }
 </style>

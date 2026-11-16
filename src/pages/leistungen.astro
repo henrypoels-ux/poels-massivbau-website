@@ -3,113 +3,130 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
+import Photo from '../components/Photo.astro';
 import { url } from '../lib/site';
 
-const own = [
-  { icon: 'layers', title: 'Tiefbau & Erdarbeiten', text: 'Baugrube, Bodenaushub, Fundamente, Grundleitungen und Entwässerung.' },
-  { icon: 'house', title: 'Rohbau', text: 'Bodenplatte oder Keller, massives Mauerwerk, Decken und Treppen – maßgenau nach Plan.' },
-  { icon: 'roof', title: 'Dach', text: 'Dachstuhl, Dämmung, Eindeckung und Dachentwässerung.' },
-  { icon: 'shield', title: 'Fenster & Klinkerfassade', text: 'Fenster, Haustür und Verblendmauerwerk für eine dichte, wärmegedämmte Hülle.' },
-] as const;
-
-const role = [
-  { title: 'Vergabe', text: 'Wir holen Angebote ein und beauftragen bewährte Fachbetriebe aus der Region.' },
-  { title: 'Terminplanung', text: 'Ein Bauzeitenplan, in dem jedes Gewerk zur richtigen Zeit auf der Baustelle ist.' },
-  { title: 'Bauüberwachung', text: 'Regelmäßige Kontrollen und Abnahmen jedes Bauabschnitts durch unsere Bauleitung.' },
-  { title: 'Ein Ansprechpartner', text: 'Sie haben einen festen Bauleiter statt vieler einzelner Handwerker.' },
-];
-
-const ausbau = [
-  { title: 'Innen- und Fassadenputz', text: 'Saubere Oberflächen als Grundlage für alles, was danach kommt.' },
-  { title: 'Estrich', text: 'Fachgerecht eingebracht und mit der Haustechnik abgestimmt.' },
-  { title: 'Elektro', text: 'Installation nach Ihren Wünschen, abgestimmt auf die Bemusterung.' },
-  { title: 'Sanitär und Heizung', text: 'Bäder und Haustechnik von eingespielten Fachbetrieben.' },
-  { title: 'Fliesen', text: 'Bäder, Böden und Wandflächen in der gewählten Ausstattung.' },
-  { title: 'Innentüren', text: 'Zum Abschluss eingebaut – damit Ihr Haus bezugsfertig ist.' },
+const inklusive = [
+  { title: 'Feste Bauleitung', text: 'Ein Bauleiter, den Sie kennen und der regelmäßig auf Ihrer Baustelle ist.' },
+  { title: 'Digitales Bautagebuch', text: 'Fotos und Baufortschritt dokumentiert – auch wenn Sie nicht vorbeikommen können.' },
+  { title: 'Terminplan', text: 'Ein Bauzeitenplan, in dem jedes Gewerk zur richtigen Zeit auf der Baustelle ist.' },
+  { title: 'Bemusterung', text: 'Fenster, Türen, Böden, Fliesen und Sanitär gemeinsam beim Fachhändler aussuchen.' },
+  { title: 'Regionale Partner', text: 'Handwerksbetriebe vom Niederrhein, mit denen wir seit Jahren zusammenarbeiten.' },
+  { title: 'Abnahme & Gewährleistung', text: 'Gemeinsames Protokoll, vollständige Unterlagen, Ansprechpartner auch danach.' },
 ];
 ---
-<Base title="Leistungen" description="Einfamilienhäuser in Massivbauweise: Bauleitung aus einer Hand: Wir vergeben, koordinieren und überwachen alle Gewerke von Tiefbau bis Innenausbau mit Fachbetrieben aus der Region.">
+<Base title="Leistungen" description="Einfamilienhäuser, Mehrfamilienhäuser, reine Bauleitung und Projektentwicklung: Poels Massivbau aus Straelen übernimmt so viel, wie Sie abgeben möchten.">
   <PageHero
     crumb="Leistungen"
-    title="Alles für Ihr Massivhaus – aus einer Hand"
-    lead="Vom Erdaushub bis zur Schlüsselübergabe: Wir vergeben alle Gewerke an bewährte Fachbetriebe, koordinieren die Termine und überwachen jeden Bauabschnitt mit eigener Bauleitung."
+    title="So viel Bauleistung, wie Sie abgeben möchten"
+    lead="Schlüsselfertig bauen, nur die Bauleitung abgeben oder ein Projekt von Grund auf entwickeln. Wir sagen Ihnen vorher, was Sie das kostet."
   />
 
-  <section class="section">
-    <div class="container detail">
+  <nav class="jump" aria-label="Leistungen">
+    <div class="container jump__inner">
+      <a href="#einfamilienhaus">Einfamilienhaus</a>
+      <a href="#mehrfamilienhaus">Mehrfamilienhaus</a>
+      <a href="#bauleitung">Bauleitung</a>
+      <a href="#projektentwicklung">Projektentwicklung</a>
+    </div>
+  </nav>
+
+  <section class="section" id="einfamilienhaus">
+    <div class="container split">
       <div>
-        <p class="eyebrow">Mit FAVORIT Massivhaus</p>
+        <p class="eyebrow">Schlüsselfertig</p>
         <h2>Einfamilienhaus</h2>
-        <p class="detail__text">Ihr Grundstück, Ihr Grundriss, Ihre Ausstattung. Gemeinsam mit unserem Partner FAVORIT Massivhaus planen Sie Ihr Haus individuell – wir bauen es vor Ort in massiver Bauweise und begleiten Sie mit fester Bauleitung bis zum Einzug.</p>
+        <p class="split__text">Ihr Grundriss, Ihre Ausstattung, Ihr Termin. Wir planen mit Ihnen, koordinieren die Genehmigung und lassen massiv bauen – Sie ziehen in ein Haus, an dem nichts mehr fehlt.</p>
         <ul class="checks">
-          <li>Individuelle Grundrissplanung mit FAVORIT</li>
-          <li>Klare Baubeschreibung und festgelegter Leistungsumfang</li>
+          <li>Individuelle Grundrissplanung mit dem Architekten</li>
+          <li>Angebot mit detaillierter Baubeschreibung</li>
           <li>Keller oder Bodenplatte, Klinker oder Putz – Ihre Wahl</li>
           <li>Bemusterung von Fenstern, Böden, Bad und Türen</li>
         </ul>
-        <div class="btn-row" style="margin-top:36px"><a href={url('kontakt/')} class="btn btn--red">Bauvorhaben besprechen <Icon name="arrow" /></a></div>
+        <div class="btn-row" style="margin-top:34px"><a href={url('referenzen/')} class="btn btn--red">Beispielprojekte ansehen <Icon name="arrow" /></a></div>
       </div>
-      <div class="detail__visual" aria-hidden="true">
-        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
-          {Array.from({ length: 16 }, (_, r) =>
-            Array.from({ length: 9 }, (_, c) => (
-              <rect x={c * 48 - (r % 2 ? 24 : 0)} y={r * 26} width="44" height="22" fill={(r * 5 + c * 2) % 13 === 0 ? '#CC0404' : '#D6CFC5'} />
-            ))
-          )}
-        </svg>
+      <Photo label="fertiges Einfamilienhaus" height="480px" />
+    </div>
+  </section>
+
+  <section class="section" id="mehrfamilienhaus" style="padding-top:0">
+    <div class="container split split--reverse">
+      <Photo label="Mehrfamilienhaus" height="440px" />
+      <div>
+        <p class="eyebrow">Wohnen und Kapitalanlage</p>
+        <h2>Mehrfamilienhaus</h2>
+        <p class="split__text">Zwei oder mehr Wohneinheiten – für die eigene Familie, zur Vermietung oder als Kapitalanlage. Wir kalkulieren mit Ihnen Baukosten und Ertrag, bevor Sie sich binden.</p>
+        <ul class="dots">
+          <li>Wirtschaftlichkeitsbetrachtung vor Vertragsschluss</li>
+          <li>Schall- und Brandschutz nach Landesbauordnung NRW</li>
+          <li>Abgeschlossenheit und Teilung auf Wunsch</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="section section--dark">
-    <div class="container">
-      <div class="section-head">
-        <div><p class="eyebrow">Unsere Aufgabe</p><h2>Wir steuern Ihre Baustelle</h2></div>
-        <p class="lead">Die Arbeiten führen erfahrene Fachbetriebe aus. Wir sorgen dafür, dass alles zusammenpasst – zur richtigen Zeit, in der richtigen Qualität.</p>
+  <section class="section section--white focus-block" id="bauleitung">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Als Dienstleistung</p>
+        <h2>Reine Bauleitung</h2>
+        <p class="split__text">Sie haben Grundstück, Planung und vielleicht schon eigene Handwerker – aber nicht die Zeit oder Erfahrung, die Baustelle zu führen? Dann übernehmen wir genau das: für private Bauherren, Investoren und Architekturbüros.</p>
+        <div class="grid grid--2 minis">
+          <div class="mini"><h3>Vergabe</h3><p>Angebote einholen, vergleichen, Fachbetriebe beauftragen.</p></div>
+          <div class="mini"><h3>Terminplanung</h3><p>Bauzeitenplan erstellen und alle Gewerke takten.</p></div>
+          <div class="mini"><h3>Bauüberwachung</h3><p>Regelmäßige Kontrollen, Mängel erkennen, bevor sie teuer werden.</p></div>
+          <div class="mini"><h3>Abnahmen</h3><p>Abnahme jedes Gewerks mit Protokoll und Dokumentation.</p></div>
+        </div>
+        <div class="btn-row" style="margin-top:30px"><a href={url('kontakt/')} class="btn btn--red">Bauleitung anfragen <Icon name="arrow" /></a></div>
       </div>
-      <div class="grid grid--4">
-        {role.map((r) => <div class="tile tile--dark"><h3>{r.title}</h3><p>{r.text}</p></div>)}
+      <Photo label="Bauleiter auf der Baustelle" height="520px" />
+    </div>
+  </section>
+
+  <section class="section section--white focus-block" id="projektentwicklung" style="padding-top:0">
+    <div class="container split split--reverse">
+      <Photo label="Grundstück / Projektplanung" height="480px" />
+      <div>
+        <p class="eyebrow">Von Grund auf</p>
+        <h2>Projektentwicklung</h2>
+        <p class="split__text">Vom Grundstück bis zum vermieteten oder verkauften Objekt: Wir prüfen Standort und Wirtschaftlichkeit, entwickeln das Konzept, steuern Planung und Genehmigung und setzen das Projekt mit eigener Bauleitung um.</p>
+        <ol class="phases">
+          <li><strong>Standort & Machbarkeit</strong><span>Grundstück, Baurecht, Wirtschaftlichkeit</span></li>
+          <li><strong>Konzept & Planung</strong><span>Nutzung, Wohnungsmix, Entwurf mit dem Architekten</span></li>
+          <li><strong>Genehmigung & Kalkulation</strong><span>Bauantrag, Ausschreibung, Kostensicherheit</span></li>
+          <li><strong>Umsetzung</strong><span>Bauleitung bis zur Übergabe</span></li>
+        </ol>
+        <div class="btn-row" style="margin-top:30px"><a href={url('kontakt/')} class="btn btn--red">Projekt besprechen <Icon name="arrow" /></a></div>
       </div>
     </div>
   </section>
 
-  <section class="section section--white" id="rohbau">
+  <section class="section">
     <div class="container">
       <div class="section-head">
-        <div><p class="eyebrow">Unter unserer Bauleitung</p><h2>Die Gebäudehülle</h2></div>
-        <p class="lead">Fundament, Wände, Dach und Fenster entscheiden über die Qualität eines Hauses für Jahrzehnte. Deshalb überwachen wir diese Gewerke besonders eng – ausgeführt von Fachbetrieben, mit denen wir eingespielt sind.</p>
-      </div>
-      <div class="grid grid--4">
-        {own.map((g) => (
-          <div class="card"><Icon name={g.icon} size={30} class="card__icon" /><h3>{g.title}</h3><p>{g.text}</p></div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="ausbau">
-    <div class="container">
-      <div class="section-head">
-        <div><p class="eyebrow">Unter unserer Bauleitung</p><h2>Innenausbau mit festen Partnern</h2></div>
-        <p class="lead">Vergabe, Terminplanung und Qualitätskontrolle liegen bei unserer Bauleitung. Sie haben einen Ansprechpartner statt vieler.</p>
+        <div><p class="eyebrow">Immer inklusive</p><h2>Das gehört bei uns nicht auf die Nachtragsliste</h2></div>
       </div>
       <div class="grid grid--3">
-        {ausbau.map((a) => <div class="tile tile--white"><h3>{a.title}</h3><p>{a.text}</p></div>)}
+        {inklusive.map((t) => <div class="tile tile--white"><h3>{t.title}</h3><p>{t.text}</p></div>)}
       </div>
     </div>
   </section>
 
-  <CtaBand />
+  <CtaBand title="Sagen Sie uns, was Sie vorhaben – wir sagen Ihnen, was es kostet." text="Ein Anruf oder eine kurze Nachricht genügt für die erste Einschätzung." />
 </Base>
 
 <style>
-  .detail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: center; }
-  .detail h2 { margin-bottom: 22px; }
-  .detail__text { font-size: 1.06rem; line-height: 1.7; color: var(--text-2); margin-bottom: 30px; }
-  .detail__visual { min-height: 440px; height: 100%; background: #e8e3dc; border: 1px solid #ddd6cb; overflow: hidden; }
-  .detail__visual svg { width: 100%; height: 100%; }
-  @media (max-width: 900px) {
-    .detail { grid-template-columns: 1fr; gap: 40px; }
-    .detail__visual { min-height: 200px; }
-  }
+  .jump { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 96px; z-index: 10; }
+  .jump__inner { display: flex; gap: 8px 32px; flex-wrap: wrap; padding-top: 16px; padding-bottom: 16px; }
+  .jump a { font-size: .9rem; font-weight: 600; color: var(--text); }
+  .jump a:hover { color: var(--red); }
+  @media (max-width: 900px) { .jump { position: static; } }
+  section[id] { scroll-margin-top: 170px; }
+
+  .minis { gap: 16px; }
+  .phases { list-style: none; margin: 0; padding: 0; counter-reset: p; display: grid; gap: 0; }
+  .phases li { counter-increment: p; display: grid; grid-template-columns: 2.5rem 1fr; padding: 14px 0; border-top: 1px solid var(--line); }
+  .phases li::before { content: counter(p, decimal-leading-zero); grid-row: span 2; font-size: .82rem; font-weight: 700; color: var(--red); padding-top: 3px; }
+  .phases strong { font-weight: 600; }
+  .phases span { font-size: .9rem; color: var(--muted); }
 </style>

@@ -2,11 +2,12 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Photo from '../components/Photo.astro';
 import { company } from '../lib/site';
 
 const team = [
-  { initials: 'HP', name: 'Henry Poels', role: 'Geschäftsführung', text: 'Erstgespräch und Angebot, Bauleitung für Tiefbau, Rohbau, Dach und Fenster.' },
-  { initials: 'DP', name: 'David Pütz', role: 'Bauleitung', text: 'Bauleitung für den Innenausbau: Putz, Elektro, Sanitär, Estrich und Fliesen.' },
+  { name: 'Henry Poels', role: 'Geschäftsführung', text: 'Erstgespräch, Angebot und Projektentwicklung. Bauleitung für Tiefbau, Rohbau, Dach und Fenster.' },
+  { name: 'David Pütz', role: 'Bauleitung', text: 'Bauleitung für den Innenausbau: Putz, Elektro, Sanitär, Estrich und Fliesen.' },
 ];
 
 const values = [
@@ -15,7 +16,7 @@ const values = [
   { title: 'Regional', text: 'Wir sind in Straelen zu Hause und arbeiten mit Betrieben vom Niederrhein.' },
 ];
 ---
-<Base title="Über uns" description="Poels Massivbau GmbH: Familienunternehmen aus Straelen und Baupartner von FAVORIT Massivhaus seit 2021.">
+<Base title="Über uns" description="Poels Massivbau GmbH: Familienunternehmen aus Straelen für Massivbau, Bauleitung und Projektentwicklung am Niederrhein.">
   <PageHero
     crumb="Über uns"
     title="Ein Familienunternehmen aus Straelen"
@@ -23,22 +24,14 @@ const values = [
   />
 
   <section class="section">
-    <div class="container about">
-      <div class="prose">
+    <div class="container split">
+      <div>
         <p class="eyebrow">Wer wir sind</p>
-        <h2 class="about__h2">Massivbau mit Handschlagqualität</h2>
-        <p>Die {company.name} ist ein inhabergeführtes Bauunternehmen mit Sitz in Straelen am Niederrhein. Wir bauen massive Einfamilienhäuser – solide, wertbeständig und individuell nach den Wünschen unserer Bauherren.</p>
-        <p>Unsere Stärke ist die Bauleitung: Wir vergeben alle Gewerke – vom Tiefbau über Rohbau, Dach und Fenster bis zum Innenausbau – an bewährte Fachbetriebe aus der Region, stimmen die Termine ab und überwachen jeden Bauabschnitt. So haben Sie einen Ansprechpartner statt vieler.</p>
-        <h2>Partner von FAVORIT Massivhaus</h2>
-        <p>Seit {company.partnerSince} sind wir fester Baupartner der FAVORIT Massivhaus GmbH &amp; Co. KG. FAVORIT steht für individuell geplante Massivhäuser, wir für die Umsetzung vor Ort – mit kurzen Wegen und festen Ansprechpartnern.</p>
+        <h2>Massivbau mit Handschlagqualität</h2>
+        <p class="split__text">Die {company.name} ist ein inhabergeführtes Bauunternehmen mit Sitz in Straelen am Niederrhein. Wir realisieren Ein- und Mehrfamilienhäuser in massiver Bauweise, übernehmen die Bauleitung für Bauherren und Investoren und entwickeln eigene Projekte – seit [JAHR].</p>
+        <p class="split__text">Unsere Stärke ist die Bauleitung: Wir vergeben alle Gewerke an bewährte Fachbetriebe aus der Region, stimmen die Termine ab und überwachen jeden Bauabschnitt. So haben Sie einen Ansprechpartner statt vieler.</p>
       </div>
-      <aside class="facts">
-        <dl>
-          <div><dt>Sitz</dt><dd>{company.city}, Niederrhein</dd></div>
-          <div><dt>Bauweise</dt><dd>Massivbau</dd></div>
-          <div><dt>Baupartner FAVORIT</dt><dd>seit {company.partnerSince}</dd></div>
-        </dl>
-      </aside>
+      <Photo label="Team / Büro Straelen" height="460px" />
     </div>
   </section>
 
@@ -52,9 +45,9 @@ const values = [
         </div>
         <div class="team__people">
           {team.map((p) => (
-            <div class="person">
-              <div class="person__avatar" aria-hidden="true">{p.initials}</div>
-              <h3>{p.name}</h3>
+            <div>
+              <Photo label="Porträt" height="220px" />
+              <h3 class="person__name">{p.name}</h3>
               <p class="person__role">{p.role}</p>
               <p class="person__text">{p.text}</p>
             </div>
@@ -77,26 +70,11 @@ const values = [
 </Base>
 
 <style>
-  .about { display: grid; gap: 64px; grid-template-columns: minmax(0, 1fr) 19rem; align-items: start; }
-  .about__h2 { margin-top: 0 !important; font-size: clamp(1.8rem, 3.2vw, 2.5rem) !important; letter-spacing: -0.025em !important; }
-  .facts { background: var(--anthracite); color: #fff; padding: 30px; border-top: 3px solid var(--red); }
-  .facts dl { margin: 0; }
-  .facts div { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, .12); }
-  .facts div:last-child { border-bottom: 0; }
-  .facts dt { font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
-  .facts dd { margin: 4px 0 0; font-size: 1.12rem; font-weight: 600; }
-  @media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 40px; } }
-
   .team { display: grid; grid-template-columns: 1fr 1.35fr; gap: 64px; align-items: center; padding: clamp(28px, 4.5vw, 62px); background: var(--white); border: 1px solid var(--line); }
   .team__h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 20px; }
   .team__text { font-size: 1.03rem; line-height: 1.7; color: var(--muted); }
   .team__people { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 24px; }
-  .person__avatar {
-    height: 180px; display: grid; place-items: center; margin-bottom: 16px;
-    background: var(--anthracite); background-image: var(--stripes-dark);
-    color: #fff; font-size: 2.6rem; font-weight: 700; letter-spacing: .02em;
-  }
-  .person h3 { font-size: 1.18rem; margin-bottom: 4px; }
+  .person__name { font-size: 1.18rem; margin: 16px 0 4px; }
   .person__role { font-size: .88rem; font-weight: 500; color: var(--red); margin-bottom: 10px; }
   .person__text { font-size: .88rem; color: var(--muted); }
   @media (max-width: 900px) { .team { grid-template-columns: 1fr; gap: 36px; } }

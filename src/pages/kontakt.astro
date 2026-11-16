@@ -20,7 +20,7 @@ const redirect = new URL(url('danke/'), Astro.site).href;
     <div class="container contact">
       <form class="form" action="https://api.web3forms.com/submit" method="POST">
         <h2>Anfrage senden</h2>
-        <p class="form__intro">Wir melden uns schnellstmöglich bei Ihnen zurück.</p>
+        <p class="form__intro">Wir melden uns innerhalb von [X] Werktagen bei Ihnen zurück.</p>
         <input type="hidden" name="access_key" value={accessKey} />
         <input type="hidden" name="subject" value="Neue Anfrage über poels-massivbau.de" />
         <input type="hidden" name="from_name" value="Website Poels Massivbau" />
@@ -38,8 +38,10 @@ const redirect = new URL(url('danke/'), Astro.site).href;
         <div class="form__row">
           <label>Worum geht es?
             <select name="anliegen">
-              <option>Neubau Einfamilienhaus</option>
-              <option>Rohbau / Tiefbau</option>
+              <option>Einfamilienhaus</option>
+              <option>Mehrfamilienhaus</option>
+              <option>Bauleitung</option>
+              <option>Projektentwicklung</option>
               <option>Sonstiges</option>
             </select>
           </label>
@@ -68,7 +70,9 @@ const redirect = new URL(url('danke/'), Astro.site).href;
           <div><dt><Icon name="phone" size={18} />Telefon</dt><dd><a href={company.phoneHref}>{company.phone}</a></dd></div>
           <div><dt><Icon name="mail" size={18} />E-Mail</dt><dd><a href={`mailto:${company.email}`}>{company.email}</a></dd></div>
           <div><dt><Icon name="pin" size={18} />Büro</dt><dd>{company.street}<br />{company.zip} {company.city}</dd></div>
+          <div><dt><Icon name="clock" size={18} />Bürozeiten</dt><dd class="hours"><span>Mo – Do</span><span>[Zeit]</span><span>Freitag</span><span>[Zeit]</span><span>Sa / So</span><span>Termin nach Absprache</span></dd></div>
         </dl>
+        <div class="map" role="img" aria-label="Platzhalter Karte">[KARTE: erst nach Klick laden – DSGVO]</div>
       </aside>
     </div>
   </section>
@@ -101,6 +105,9 @@ const redirect = new URL(url('danke/'), Astro.site).href;
   .direct dt { display: flex; align-items: center; gap: 10px; font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
   .direct dt :global(svg) { color: var(--red); }
   .direct dd { margin: 6px 0 0; font-size: 1.05rem; font-weight: 500; }
+  .hours { display: grid; grid-template-columns: auto 1fr; gap: 4px 18px; font-size: .95rem !important; }
+  .hours span:nth-child(odd) { color: rgba(255, 255, 255, .6); }
+  .map { margin-top: 18px; height: 180px; display: grid; place-items: center; text-align: center; padding: 16px; border: 1px dashed rgba(255, 255, 255, .3); font-size: .78rem; color: rgba(255, 255, 255, .55); }
   .direct a { color: #fff; }
   .direct a:hover { color: #fff; text-decoration: underline; }
   @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } .direct { order: -1; } }

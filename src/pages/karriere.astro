@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { company, url } from '../lib/site';
+
+// Platzhalter – konkrete Stellen folgen.
+const jobs = [
+  { title: '[Stellenbezeichnung, z. B. Bauleiter (m/w/d)]', meta: 'Vollzeit · Straelen' },
+  { title: '[Stellenbezeichnung, z. B. Bauzeichner (m/w/d)]', meta: 'Voll- oder Teilzeit · Straelen' },
+];
+---
+<Base title="Karriere" description="Karriere bei der Poels Massivbau GmbH in Straelen: offene Stellen und Initiativbewerbung.">
+  <PageHero
+    crumb="Karriere"
+    title="Bauen Sie mit uns"
+    lead="Wir sind ein Familienunternehmen mit kurzen Wegen und echten Projekten am Niederrhein. Wenn Sie Baustellen lieber steuern als verwalten, passen Sie zu uns."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><div><p class="eyebrow">Offene Stellen</p><h2>Aktuell suchen wir</h2></div></div>
+      <div class="jobs">
+        {jobs.map((j) => (
+          <a href={`mailto:${company.email}?subject=Bewerbung`} class="job">
+            <div><h3>{j.title}</h3><p>{j.meta}</p></div>
+            <Icon name="arrow" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-head"><div><p class="eyebrow">Was wir bieten</p><h2>Warum Poels</h2></div></div>
+      <div class="grid grid--3">
+        <div class="tile"><h3>Familienunternehmen</h3><p>Kurze Wege, schnelle Entscheidungen, direkter Draht zur Geschäftsführung.</p></div>
+        <div class="tile"><h3>Abwechslung</h3><p>Einfamilienhäuser, Mehrfamilienhäuser, Bauleitung und Projektentwicklung.</p></div>
+        <div class="tile"><h3>[Benefit]</h3><p>[Weitere Vorteile, z. B. Firmenwagen, Weiterbildung, Arbeitszeit]</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Initiativbewerbung</p>
+      <h2 style="margin-top:0">Nichts Passendes dabei?</h2>
+      <p>Schicken Sie uns Ihre Unterlagen an <a href={`mailto:${company.email}`}>{company.email}</a> oder rufen Sie uns an unter <a href={company.phoneHref}>{company.phone}</a>.</p>
+      <div class="btn-row"><a href={url('kontakt/')} class="btn btn--red">Kontakt aufnehmen</a></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .jobs { display: grid; gap: 12px; }
+  .job { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 28px; background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--red); color: var(--text); }
+  .job:hover { color: var(--red); }
+  .job h3 { margin-bottom: 4px; }
+  .job p { font-size: .9rem; color: var(--muted); }
+</style>

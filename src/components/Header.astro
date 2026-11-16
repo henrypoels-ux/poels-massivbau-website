@@ -8,7 +8,7 @@ const isActive = (href: string) => current.startsWith(url(href));
 ---
 <header class="header">
   <div class="container header__inner">
-    <a href={url()} class="header__logo" aria-label="Poels Massivbau – Startseite"><Logo width={136} /></a>
+    <a href={url()} class="header__logo" aria-label="Poels Massivbau – Startseite"><Logo width={150} /></a>
 
     <button class="header__toggle" aria-expanded="false" aria-controls="main-nav">
       <span class="sr-only">Menü</span>
@@ -56,7 +56,7 @@ const isActive = (href: string) => current.startsWith(url(href));
 
   @media (max-width: 900px) {
     .header__inner { min-height: 76px; }
-    .header__logo :global(svg) { width: 112px; height: auto; }
+    .header__logo :global(img) { width: 116px; height: auto; }
     .header__toggle { display: flex; }
     .header__nav {
       display: none; position: absolute; top: 100%; left: 0; right: 0;

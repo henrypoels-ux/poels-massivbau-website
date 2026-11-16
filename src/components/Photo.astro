@@ -1,0 +1,25 @@
+---
+// Foto-Platzhalter aus dem Entwurf. Später durch <img src=… alt=…> ersetzen.
+import Icon from './Icon.astro';
+interface Props { label: string; dark?: boolean; height?: string; class?: string }
+const { label, dark = false, height = '440px', class: cls } = Astro.props;
+---
+<div class:list={['photo', { 'photo--dark': dark }, cls]} style={`--h:${height}`} role="img" aria-label={`Platzhalter: ${label}`}>
+  <span class="photo__tag"><Icon name="image" size={15} />[FOTO: {label}]</span>
+</div>
+
+<style>
+  .photo {
+    min-height: var(--h); height: 100%; display: flex; align-items: flex-end; padding: 22px;
+    background-image: repeating-linear-gradient(115deg, rgba(18,29,40,.05) 0 2px, transparent 2px 20px), linear-gradient(150deg, #e8e3dc, #d6cfc5);
+    border: 1px solid #ddd6cb;
+  }
+  .photo__tag {
+    display: inline-flex; align-items: center; gap: 10px; padding: 8px 13px;
+    border: 1px dashed #a9a093; background: rgba(255, 255, 255, .6);
+    font-size: .74rem; font-weight: 500; color: var(--muted);
+  }
+  .photo--dark { background: none; border: 0; padding: 0; min-height: 0; height: auto; }
+  .photo--dark .photo__tag { border-color: rgba(255, 255, 255, .35); background: none; color: rgba(255, 255, 255, .6); }
+  @media (max-width: 900px) { .photo:not(.photo--dark) { min-height: min(var(--h), 260px); } }
+</style>
